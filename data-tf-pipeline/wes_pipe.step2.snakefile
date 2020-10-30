@@ -68,7 +68,7 @@ rule sortbam:
     message: "Running BAM Alignment on {wildcards.sample}"
     priority: 10
     benchmark:
-        "benchmarks/{sample}/{sample}.run_BWA.txt"
+        "benchmarks/{sample}/{sample}.sortbam.txt"
 #     log:
 #         err="logs/BWA/{sample}/{sample}.err.log",
 #         out="logs/BWA/{sample}/{sample}.out.log"

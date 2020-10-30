@@ -38,6 +38,8 @@ rule CollectHsMetrics:
 #     log:
 #         err="logs/picard/annotate_metrics/{sample}.err.log",
 #         out="logs/picard/annotate_metrics/{sample}.out.log"
+    benchmark:
+        "benchmarks/{sample}/{sample}.CollectHsMetrics.txt"
     shell:
         "picard CollectHsMetrics "
         " -Xmx50g"
@@ -62,6 +64,8 @@ rule CollecInsertsize:
 #     log:
 #         err="logs/picard/filtercons_hs_metrics/{sample}.err.log",
 #         out="logs/picard/filtercons_hs_metrics/{sample}.out.log"
+    benchmark:
+        "benchmarks/{sample}/{sample}.CollectInsertsize.txt"
     shell:
         "picard CollectInsertSizeMetrics "
         " -Xmx50g"

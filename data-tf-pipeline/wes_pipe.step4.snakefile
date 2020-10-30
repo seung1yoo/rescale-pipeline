@@ -42,6 +42,8 @@ rule gatk_bqsr:
         extra="",  # optional
         java_opts="", # optional
         tmp=temp("analysis/gatk4/{sample}/temp"),
+    benchmark:
+        "benchmarks/{sample}/{sample}.gatk_bqsr.txt"
     shell:
         "mkdir -p {params.tmp} && "
         "gatk  BaseRecalibrator"
@@ -62,6 +64,8 @@ rule gatk_bqsr_apply:
 #           sample="[^/]+"
 #     log:
 #         "logs/gatk/bqsr/{sample}.log"
+    benchmark:
+        "benchmarks/{sample}/{sample}.gatk_bqsr_apply.txt"
     params:
         extra="",  # optional
         java_opts="", # optional
@@ -83,6 +87,8 @@ rule haplotype_caller_GVCF:
         gvcf="analysis/gatk4/{sample}/{sample}.recal.haplotypecall.g.vcf",
 #     wildcard_constraints:
 #           sample="[^/]+"
+    benchmark:
+        "benchmarks/{sample}/{sample}.haplotype_caller_GVCF.txt"
     params:
         extra="",  # optional
         java_opts="", # optional
@@ -106,6 +112,8 @@ rule haplotype_caller_VCF:
         vcf="analysis/gatk4/{sample}/{sample}.recal.haplotypecall.vcf",
 #     wildcard_constraints:
 #           sample="[^/]+"
+    benchmark:
+        "benchmarks/{sample}/{sample}.haplotype_caller_VCF.txt"
     params:
         extra="",  # optional
         java_opts="", # optional
@@ -124,6 +132,8 @@ rule gatk_filter:
         vcf="analysis/gatk4/{sample}/{sample}.recal.haplotypecall.vcf",
     output:
         finalvcf="analysis/gatk4/{sample}/{sample}.recal.haplotypecall.final.vcf",
+    benchmark:
+        "benchmarks/{sample}/{sample}.gatk_filter.txt"
     params:
         tmp=temp("analysis/gatk4/{sample}/temp"),
 #     wildcard_constraints:

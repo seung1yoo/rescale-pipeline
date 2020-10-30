@@ -36,8 +36,9 @@ rule gatk4_metrics:
     output:
         metrics="analysis/mutect2/{sample}/{sample}.gatk4.metrics",
         adapter_metrics="analysis/mutect2/{sample}/{sample}.gatk4.metrics.pre_adapter_detail_metrics",
-    threads: 8
     message: "Running collectSequencing Artifact Metrics on {wildcards.sample}"
+    benchmark:
+        "benchmarks/{sample}/{sample}.gatk4_metrics.txt"
     shell:
         "picard CollectSequencingArtifactMetrics"
         " I={input.bam}"
@@ -51,7 +52,8 @@ rule getpileupsummary:
         bam="analysis/gatk4/{sample}/{sample}.recal.bam",
     output:
         table="analysis/mutect2/{sample}/{sample}.gatk4.table",
-    threads: 8
+    benchmark:
+        "benchmarks/{sample}/{sample}.getpileupsummary.txt"
     shell:
         "gatk GetPileupSummaries"
         " -I {input.bam}"
@@ -65,7 +67,8 @@ rule CalcContamination:
         table="analysis/mutect2/{sample}/{sample}.gatk4.table",
     output:
         table="analysis/mutect2/{sample}/{sample}.gatk4.contamination.table",
-    threads: 8
+    benchmark:
+        "benchmarks/{sample}/{sample}.CalcContamination.txt"
     params:
         tmp="analysis/mutect2/{sample}/temp",
     shell:
@@ -85,8 +88,9 @@ rule Mutect2:
         filt_normal_af="0.000025",
         tumorlod="2",
         sampleid="{sample}"
-    threads: 8
     message: "Running Mutect2 on {wildcards.sample}"
+    benchmark:
+        "benchmarks/{sample}/{sample}.Mutect2.txt"
     shell:
         "mkdir -p {params.tmp} && "
         "gatk Mutect2"
@@ -114,7 +118,8 @@ rule FilterMutect2Var:
         filtvcf="analysis/mutect2/{sample}/{sample}.mutect2.filt.vcf",
     params:
         tmp="analysis/mutect2/{sample}/temp",
-    threads: 8
+    benchmark:
+        "benchmarks/{sample}/{sample}.FilterMutect2Var.txt"
     shell:
         "mkdir -p {params.tmp} && "
         "gatk FilterMutectCalls"
@@ -133,7 +138,8 @@ rule FilterMutect2Bias:
         filtvcf="analysis/mutect2/{sample}/{sample}.mutect2.filt.OxoG.vcf",
     params:
         tmp=temp("analysis/mutect2/{sample}/temp"),
-    threads: 8
+    benchmark:
+        "benchmarks/{sample}/{sample}.FilterMutect2Bias.txt"
     shell:
         "mkdir -p {params.tmp} && "
         "gatk FilterByOrientationBias"
@@ -151,7 +157,8 @@ rule FilterMutect2Final:
         vcf="analysis/mutect2/{sample}/{sample}.mutect2.filt.OxoG.vcf",
     output:
         vcf="analysis/mutect2/{sample}/{sample}.mutect2.final.vcf",
-    threads: 8
+    benchmark:
+        "benchmarks/{sample}/{sample}.FilterMutect2Final.txt"
     shell:
         "python {config[pipedir]}/modules/scripts/normal_variants_filter.py -i {input.vcf} -o {output.vcf}"
 
