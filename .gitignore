@@ -1,0 +1,8 @@
+References
+rawdata_merge
+analysis/
+benchmarks/
+logs/
+.snakemake/
+*.pyc
+

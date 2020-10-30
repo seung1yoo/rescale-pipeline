@@ -1,0 +1,32 @@
+---
+metasheet: metasheet.csv
+ref:     /TBI/Share/BioPeople/siyoo/Pipelines/rescale-pipeline/data-tf-pipeline/ref.yaml
+pipedir: /TBI/Share/BioPeople/siyoo/Pipelines/rescale-pipeline/data-tf-pipeline
+assembly: 'hg19'
+cluster: qsub
+workdir: /TBI/Share/BioPeople/siyoo/Pipelines/rescale-pipeline
+
+#Target Region BED file
+target_bed:         /TBI/Share/BioPeople/siyoo/Pipelines/rescale-pipeline/References/homo_sapiens/hg19/targetkit/SureSelect_Human_All_Exon_V5.bed
+interval_list:      /TBI/Share/BioPeople/siyoo/Pipelines/rescale-pipeline/References/homo_sapiens/hg19/targetkit/SureSelect_Human_All_Exon_V5.interval_list
+sv_target_bed:      /TBI/Share/BioPeople/siyoo/Pipelines/rescale-pipeline/References/homo_sapiens/hg19/targetkit/SureSelect_Human_All_Exon_V5.bed
+cnv_target_bed:     /TBI/Share/BioPeople/siyoo/Pipelines/rescale-pipeline/References/homo_sapiens/hg19/targetkit/SureSelect_Human_All_Exon_V5.bed
+variant_target_bed: /TBI/Share/BioPeople/siyoo/Pipelines/rescale-pipeline/References/homo_sapiens/hg19/targetkit/SureSelect_Human_All_Exon_V5.bed
+
+pvacseq: False
+
+#PARAMS
+threads: 8
+memory: 50
+bwa_seed: 18
+
+samples:
+  YBC-1-BL:
+    fastq_1: /TBI/Share/BioPeople/siyoo/Pipelines/rescale-pipeline/rawdata_merge/YBC-1-BL_R1.fastq.gz
+    fastq_2: /TBI/Share/BioPeople/siyoo/Pipelines/rescale-pipeline/rawdata_merge/YBC-1-BL_R2.fastq.gz
+  YBC-2-BL:
+    fastq_1: /TBI/Share/BioPeople/siyoo/Pipelines/rescale-pipeline/rawdata_merge/YBC-2-BL_R1.fastq.gz
+    fastq_2: /TBI/Share/BioPeople/siyoo/Pipelines/rescale-pipeline/rawdata_merge/YBC-2-BL_R2.fastq.gz
+  YBC-4-BL:
+    fastq_1: /TBI/Share/BioPeople/siyoo/Pipelines/rescale-pipeline/rawdata_merge/YBC-4-BL_R1.fastq.gz
+    fastq_2: /TBI/Share/BioPeople/siyoo/Pipelines/rescale-pipeline/rawdata_merge/YBC-4-BL_R2.fastq.gz

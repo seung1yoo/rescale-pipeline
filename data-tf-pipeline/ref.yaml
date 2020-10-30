@@ -1,0 +1,21 @@
+#Reference files required
+
+hg19:
+  ref_fasta: /data05/project/BioPeople/shsong/Projects/TEST-DataTF-Rescale/References/homo_sapiens/hg19/fasta/hg19.fa
+
+  #Reference organism; possible value - hg19, mm9 etc.
+  reference: hg19
+
+  # Annotation DB
+  dbsnp_gatk:       /data05/project/BioPeople/shsong/Projects/TEST-DataTF-Rescale/References/homo_sapiens/hg19/fasta/dbsnp.v150.hg19.vcf.gz
+  gnomad_mutect2:   /data05/project/BioPeople/shsong/Projects/TEST-DataTF-Rescale/References/homo_sapiens/hg19/fasta/af-only-gnomad.raw.sites.hg19.vcf.gz 
+
+  # VEP annotation path
+#   vep_cache_path:     /TBI/Share/BioPeople/shsong/BioTools/vep/VEP_Cache
+
+  # python 2.7
+#   python27: /TBI/People/tbi/shsong/BioTools/miniconda3/envs/fgbio_py2/bin
+
+  # Non conda Program
+#   msisensor: /TBI/Share/BioPeople/shsong/BioTools/msisensor/msisensor-0.6/msisensor
+

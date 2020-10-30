@@ -1,0 +1,12 @@
+{
+    "__default__": {
+        "time": "12:00:00",
+        "threads": "8",
+        "mem": "30",
+        "jobName": "{rule}.{wildcards.sample}",
+        "output" : "logs/{rule}.{wildcards.sample}.out",
+        "error"  : "logs/{rule}.{wildcards.sample}.err"
+    }
+}
+
+
